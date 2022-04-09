@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/sungminyun1/rmq_test/issues"
   },
-  "homepage": "https://github.com/sungminyun1/rmq_test#readme"
+  "homepage": "https://github.com/sungminyun1/rmq_test#readme",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "axios": "^0.26.1",
+    "express": "^4.17.3"
+  }
 }
