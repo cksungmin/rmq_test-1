@@ -1,4 +1,5 @@
 const amqp = require('amqplib');
+const axios = require('axios')
 
 class RMQ{
     constructor(){
@@ -36,6 +37,13 @@ class RMQ{
         this.channel.consume(this.queue, data =>{
             console.log(data.content.toString())
             rmq.send(send_data ? send_data : data.content.toString(),true);
+        },{noAck : true})
+    }
+
+    consumeAndPost(){
+        this.channel.consume(this.queue,data =>{
+            console.log(data.content.toString())
+            axios.post('http://localhost:8080/event',{val : data.content.toString()})
         },{noAck : true})
     }
 }

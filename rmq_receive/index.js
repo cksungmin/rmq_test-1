@@ -5,5 +5,5 @@ main();
 
 async function main(){
     await rmq.init('test2')
-    rmq.consume()
+    rmq.consumeAndPost()
 }
