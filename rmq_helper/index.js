@@ -3,7 +3,7 @@ const axios = require('axios')
 
 class RMQ{
     constructor(){
-        this.url = 'amqp://localhost'
+        this.url = 'amqp://test:1234@192.168.0.144/tt'
         this.connect = null;
         this.channel = null;
     }
@@ -41,10 +41,15 @@ class RMQ{
     }
 
     consumeAndPost(){
-        this.channel.consume(this.queue,data =>{
-            console.log(data.content.toString())
-            axios.post('http://localhost:8080/event',{val : data.content.toString()})
-        },{noAck : true})
+        try{
+            this.channel.consume(this.queue,data =>{
+                console.log(data.content.toString())
+                axios.post('http://localhost:8080/event',{val : data.content.toString()}).catch(e=>console.log(e))
+            },{noAck : true})
+        }catch(err){
+            console.log(err)
+        }
+
     }
 }
 

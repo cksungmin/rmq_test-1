@@ -4,11 +4,29 @@ const axios = require('axios');
 //     val : 1
 // }).then(res => console.log(res.data))
 
-for(let i =0; i<10; i++){
+for(let i =0; i<400; i++){
     axios.post('http://localhost:8080',{
         val : i
-    }).then(res => console.log(`here i am i : [${i}], res : [${res.data}]`))
+    }).then(res => console.log(`i : [${i}], res : [${res.data}]`))
 }
 // axios.post('http://localhost:8080',{
 //     val : 1
 // }).then(res => console.log(`here i am i : [${i}], res : [${res.data}]`))
+
+// main()
+// async function main(){
+//
+//     for(let i =0; i<10000; i++){
+//         const start = new Date()
+//         await(function(){
+//             return new Promise((resolve,reject)=>{
+//                 setTimeout(()=>{
+//                     axios.post('http://localhost:8080',{
+//                         val : i
+//                     }).then(res => console.log(`i : [${i}], res : [${res.data}] elapse : [${new Date - start}]`))
+//                     resolve()
+//                 },0)
+//             })
+//         })()
+//     }
+// }

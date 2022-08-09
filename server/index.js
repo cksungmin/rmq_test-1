@@ -12,7 +12,7 @@ const rmq = new RMQ()
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-//app.use(timeout('5s'))
+app.use(timeout('5s'))
 
 app.listen(8080,async ()=>{
     console.log('server start')
@@ -35,4 +35,9 @@ app.post('/event', (req,res,next)=>{
     console.log(data)
     event.emit(`${data.eventName}`,data.val);
     res.send()
+})
+
+app.use((err,req,res,next)=>{
+    console.log(req.body.val)
+    res.send('fail')
 })
